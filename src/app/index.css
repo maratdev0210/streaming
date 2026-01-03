@@ -1,0 +1,92 @@
+@import "tailwindcss";
+
+@theme {
+  --color-subdued: #b3b3b3;
+  --color-positive: #1ed760;
+  --color-is-active-fg-color: #1db954;
+  --color-background-base: #121212;
+}
+
+body {
+  background-color: #121212;
+  margin: 0 auto;
+  padding: 0px;
+}
+
+/* audio playback styles */
+.hidden-visually {
+  border: 0;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  clip: rect(0, 0, 0, 0);
+}
+
+input[type="range" i] {
+  appearance: auto;
+  cursor: default;
+  color: light-dark(rgb(16, 16, 16), rgb(255, 255, 255));
+  padding: initial;
+  border: initial;
+  margin: 2px;
+}
+
+.group:hover .progress-bar {
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+  margin-left: -6px;
+  top: 50%;
+  will-change: left;
+  z-index: 100;
+  align-items: center;
+  background-color: white;
+  border: 0px;
+  border-radius: 50%;
+  height: 12px;
+  width: 12px;
+  transform: translateY(-50%);
+  position: absolute;
+}
+
+.play-icon {
+  fill: black;
+  height: 16px;
+  width: 16px;
+}
+
+.pause-icon {
+  fill: black;
+  height: 16px;
+  width: 16px;
+}
+
+.icon-base {
+  fill: #656565;
+  height: 16px;
+  width: 16px;
+}
+
+.icon-base:hover {
+  fill: white;
+  transition-duration: 50ms;
+  scale: 104%;
+}
+
+.icon-base_active {
+  fill: #1ed760;
+}
+
+.icon-base_active_mark {
+  background-color: #1ed760;
+  border-radius: 50%;
+  bottom: -8px;
+  content: "";
+  display: block;
+  height: 4px;
+  position: absolute;
+  left: 0%;
+  transform: translateX(-50%);
+  width: 4px;
+}
