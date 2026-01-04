@@ -11,6 +11,7 @@ import { Volume } from "./Volume/ui/Volume";
 import { MiniPlayer } from "./MiniPlayer/ui/MiniPlayer";
 import { FullScreen } from "./FullScreen/ui/FullScreen";
 import { AudioPlayer } from "./AudioPlayer/ui/AudioPlayer";
+import { CreateEmail } from "../Auth/create-email/ui/CreateEmail";
 
 export {
   Playback,
@@ -26,4 +27,5 @@ export {
   MiniPlayer,
   FullScreen,
   AudioPlayer,
+  CreateEmail,
 };
