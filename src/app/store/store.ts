@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
-import trackReducer  from "../../entities/track/model/trackSlice";
+import trackReducer from "../../entities/track/model/trackSlice";
+import authReducer from "../../entities/auth/model/authSlice";
 
 export const store = configureStore({
   reducer: {
     track: trackReducer,
+    auth: authReducer,
   },
 });
 
