@@ -5,6 +5,9 @@
   --color-positive: #1ed760;
   --color-is-active-fg-color: #1db954;
   --color-background-base: #121212;
+  --color-essential-negative: #ed2c3f;
+  --color-essential-subdued: #7c7c7c;
+  --color-text-negative: #c91123;
 }
 
 body {
