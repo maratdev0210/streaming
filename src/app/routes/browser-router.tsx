@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router";
 import { RouterProvider } from "react-router/dom";
 import { routes } from "../../shared/routes/routes";
-import { Home, Collection } from "../../pages";
+import { Home, Collection, Signup } from "../../pages";
 
 const router = createBrowserRouter([
   {
@@ -11,6 +11,10 @@ const router = createBrowserRouter([
   {
     path: routes.collection,
     Component: Collection,
+  },
+  {
+    path: routes.signup,
+    Component: Signup,
   },
 ]);
 
