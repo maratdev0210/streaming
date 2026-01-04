@@ -2,11 +2,7 @@ import { api } from "../../../shared/api/api";
 import type { ITrack } from "../model/model";
 
 async function getTrackData(trackId: number): Promise<ITrack> {
-  return await api<ITrack>(`/media/${trackId}/info.json`);
+  return await api<ITrack, unknown>(`/media/${trackId}/info.json`, "GET");
 }
 
-async function getTrackAudio(trackId: number): Promise<HTMLAudioElement> {
-  return await api<HTMLAudioElement>(`/media/${trackId}/${trackId}.mp3`);
-}
-
-export { getTrackData, getTrackAudio };
+export { getTrackData };
