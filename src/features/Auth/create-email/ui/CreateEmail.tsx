@@ -4,7 +4,7 @@ import { Email } from "../../../../entities/auth/model/model";
 import type { IEmail } from "../../../../entities/auth/model/model";
 import { checkEmailExists } from "../api/api";
 import { useDispatch } from "react-redux";
-import { setNextStep } from "../../../../entities/auth/model/authSlice";
+import { setEmail } from "../../../../entities/auth/model/authSlice";
 
 export function CreateEmail() {
   const dispatch = useDispatch();
@@ -14,13 +14,12 @@ export function CreateEmail() {
     formState: { errors },
   } = useForm({
     resolver: zodResolver(Email),
-    shouldUseNativeValidation: true,
   });
 
   const onSubmit = async (email: IEmail) => {
     const result = await checkEmailExists(email);
     if (result.status === "fullfilled") {
-      dispatch(setNextStep(email));
+      dispatch(setEmail(email));
     }
   };
 

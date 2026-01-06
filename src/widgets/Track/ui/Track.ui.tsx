@@ -13,12 +13,11 @@ import {
   MiniPlayer,
   FullScreen,
   AudioPlayer,
-} from "../../../features/Track";
+} from "../../../features/Track/index";
 import { useSelector } from "react-redux";
 
 export function Track() {
   const { title, artist, cover, duration } = useSelector(selectTrack);
-
 
   return (
     <div className="flex h-24 p-2 justify-between items-center bg-black fixed bottom-0 w-full">

@@ -10,7 +10,9 @@ const Email = z
 
 interface IAuth {
   email: string;
-  isNextStep: boolean;
+  password: string;
+  isEmailStepDone: boolean;
+  isPasswordStepDone: boolean;
 }
 
 export type IEmail = z.infer<typeof Email>;

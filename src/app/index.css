@@ -93,3 +93,20 @@ input[type="range" i] {
   transform: translateX(-50%);
   width: 4px;
 }
+
+.progress-auth-bar-wrapper {
+  block-size: 2px;
+}
+
+.progress-auth-bar {
+  inline-size: 33.3333%;
+  transition: 200ms;
+  background-color: var(--color-positive);
+  block-size: 2px;
+}
+
+.previous-icon:hover {
+  fill: white;
+  transition-duration: 50ms;
+  scale: 104%;
+}

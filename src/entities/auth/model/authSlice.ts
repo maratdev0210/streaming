@@ -6,22 +6,33 @@ import type { IEmail } from "./model";
 
 const initialState: IAuth = {
   email: "",
-  isNextStep: false,
+  password: "",
+  isEmailStepDone: false,
+  isPasswordStepDone: false,
 };
 
 export const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    setNextStep: (state, action: PayloadAction<IEmail>) => {
+    setEmail: (state, action: PayloadAction<IEmail>) => {
       state.email = action.payload.email;
-      state.isNextStep = true;
+      state.isEmailStepDone = true;
+    },
+
+    setPasswordField: (state, action: PayloadAction<string>) => {
+      state.password = action.payload;
+      state.isPasswordStepDone = true;
+    },
+
+    goBackToEmail: (state) => {
+      state.isEmailStepDone = false;
+      state.password = "";
     },
   },
 });
 
-export const { setNextStep } = authSlice.actions;
-export const selectEmail = (state: RootState) => state.auth.email;
-export const selectIsNextStep = (state: RootState) => state.auth.isNextStep;
+export const { setEmail, setPasswordField, goBackToEmail } = authSlice.actions;
+export const selectAuth = (state: RootState) => state.auth;
 
 export default authSlice.reducer;
