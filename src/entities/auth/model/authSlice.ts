@@ -2,13 +2,15 @@ import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "../../../app/store/store";
 import type { IAuth } from "./model";
-import type { IEmail } from "./model";
+import type { IEmail, IName } from "./model";
 
 const initialState: IAuth = {
   email: "",
   password: "",
+  name: "",
   isEmailStepDone: false,
   isPasswordStepDone: false,
+  isNameStepDone: false,
 };
 
 export const authSlice = createSlice({
@@ -25,6 +27,16 @@ export const authSlice = createSlice({
       state.isPasswordStepDone = true;
     },
 
+    setNameField: (state, action: PayloadAction<IName>) => {
+      state.name = action.payload.name;
+      state.isNameStepDone = true;
+    },
+
+    goBackToPassword: (state) => {
+      state.isPasswordStepDone = false;
+      state.name = "";
+    },
+
     goBackToEmail: (state) => {
       state.isEmailStepDone = false;
       state.password = "";
@@ -32,7 +44,13 @@ export const authSlice = createSlice({
   },
 });
 
-export const { setEmail, setPasswordField, goBackToEmail } = authSlice.actions;
+export const {
+  setEmail,
+  setPasswordField,
+  goBackToEmail,
+  setNameField,
+  goBackToPassword,
+} = authSlice.actions;
 export const selectAuth = (state: RootState) => state.auth;
 
 export default authSlice.reducer;

@@ -8,13 +8,24 @@ const Email = z
   })
   .required();
 
+const Name = z
+  .object({
+    name: z
+      .string()
+      .min(2, "The name must be at least 2 letters long"),
+  })
+  .required();
+
 interface IAuth {
   email: string;
   password: string;
+  name: string;
   isEmailStepDone: boolean;
   isPasswordStepDone: boolean;
+  isNameStepDone: boolean;
 }
 
 export type IEmail = z.infer<typeof Email>;
-export { Email };
+export type IName = z.infer<typeof Name>;
+export { Email, Name };
 export type { IAuth };

@@ -2,12 +2,14 @@ import {
   CreateEmail,
   AlternativeAuth,
   CreatePassword,
+  CreateName,
 } from "../../../features/Auth";
 import { useSelector } from "react-redux";
 import { selectAuth } from "../../../entities/auth/model/authSlice";
 
 export function AuthForm() {
-  const { isEmailStepDone, isPasswordStepDone } = useSelector(selectAuth);
+  const { isEmailStepDone, isPasswordStepDone, isNameStepDone } =
+    useSelector(selectAuth);
 
   return (
     <>
@@ -20,7 +22,8 @@ export function AuthForm() {
           <AlternativeAuth />
         </>
       )}
-      {isEmailStepDone && <CreatePassword />}
+      {isEmailStepDone && !isPasswordStepDone && <CreatePassword />}
+      {isPasswordStepDone && <CreateName />}
     </>
   );
 }
