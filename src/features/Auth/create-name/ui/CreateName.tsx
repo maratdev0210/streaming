@@ -17,6 +17,7 @@ export function CreateName() {
   } = useForm({ resolver: zodResolver(Name) });
 
   const onSubmit = (name: IName) => {
+
     dispatch(setNameField(name));
   };
 
@@ -38,7 +39,7 @@ export function CreateName() {
               </button>
               <div className="pt-4 pb-4 ">
                 <span className="block text-subdued mb-1 text-[1rem]">
-                  Step 2 of 3
+                  Step 2 of 2
                 </span>
                 <span className="block font-bold text-white text-[1rem]">
                   Create Name
@@ -74,7 +75,7 @@ export function CreateName() {
           </div>
         </div>
         <button
-          className="mt-4 h-12 cursor-pointer flex justify-center items-center font-bold w-full rounded-full text-center bg-positive"
+          className="mt-4 hover:scale-104 h-12 cursor-pointer flex justify-center items-center font-bold w-full rounded-full text-center bg-positive"
           type="submit"
         >
           <span className="text-[1rem] text-black">Next</span>

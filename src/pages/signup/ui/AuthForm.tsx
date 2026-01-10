@@ -8,8 +8,7 @@ import { useSelector } from "react-redux";
 import { selectAuth } from "../../../entities/auth/model/authSlice";
 
 export function AuthForm() {
-  const { isEmailStepDone, isPasswordStepDone, isNameStepDone } =
-    useSelector(selectAuth);
+  const { isEmailStepDone, isPasswordStepDone } = useSelector(selectAuth);
 
   return (
     <>

@@ -10,9 +10,7 @@ const Email = z
 
 const Name = z
   .object({
-    name: z
-      .string()
-      .min(2, "The name must be at least 2 letters long"),
+    name: z.string().min(2, "The name must be at least 2 letters long"),
   })
   .required();
 
@@ -22,7 +20,7 @@ interface IAuth {
   name: string;
   isEmailStepDone: boolean;
   isPasswordStepDone: boolean;
-  isNameStepDone: boolean;
+  isAuthStepDone: boolean;
 }
 
 export type IEmail = z.infer<typeof Email>;

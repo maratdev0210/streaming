@@ -10,7 +10,7 @@ const initialState: IAuth = {
   name: "",
   isEmailStepDone: false,
   isPasswordStepDone: false,
-  isNameStepDone: false,
+  isAuthStepDone: false,
 };
 
 export const authSlice = createSlice({
@@ -29,7 +29,7 @@ export const authSlice = createSlice({
 
     setNameField: (state, action: PayloadAction<IName>) => {
       state.name = action.payload.name;
-      state.isNameStepDone = true;
+      state.isAuthStepDone = true;
     },
 
     goBackToPassword: (state) => {
