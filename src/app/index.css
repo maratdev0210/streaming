@@ -99,13 +99,20 @@ input[type="range" i] {
 }
 
 .progress-auth-bar {
-  inline-size: 50%;
+  inline-size: 33.3333%;
   transition: 200ms;
   background-color: var(--color-positive);
   block-size: 2px;
 }
 
 .progress-auth-bar-second {
+  inline-size: 66.6666%;
+  transition: 200ms;
+  background-color: var(--color-positive);
+  block-size: 2px;
+}
+
+.progress-auth-bar-third {
   inline-size: 100%;
   transition: 200ms;
   background-color: var(--color-positive);

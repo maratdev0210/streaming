@@ -10,7 +10,8 @@ const initialState: IAuth = {
   name: "",
   isEmailStepDone: false,
   isPasswordStepDone: false,
-  isAuthStepDone: false,
+  isNameStepDone: false,
+  isSuccessfullyRegistered: false,
 };
 
 export const authSlice = createSlice({
@@ -29,7 +30,7 @@ export const authSlice = createSlice({
 
     setNameField: (state, action: PayloadAction<IName>) => {
       state.name = action.payload.name;
-      state.isAuthStepDone = true;
+      state.isNameStepDone = true;
     },
 
     goBackToPassword: (state) => {
@@ -41,6 +42,14 @@ export const authSlice = createSlice({
       state.isEmailStepDone = false;
       state.password = "";
     },
+
+    goBackToName: (state) => {
+      state.isNameStepDone = false;
+    },
+
+    completeRegistration: (state) => {
+      state.isSuccessfullyRegistered = true;
+    },
   },
 });
 
@@ -50,6 +59,8 @@ export const {
   goBackToEmail,
   setNameField,
   goBackToPassword,
+  goBackToName,
+  completeRegistration,
 } = authSlice.actions;
 export const selectAuth = (state: RootState) => state.auth;
 

@@ -1,7 +1,7 @@
 import { PreviousIcon } from "../../../../shared/ui/PreviousIcon";
 import { ShowPasswordIcon } from "../../../../shared/ui/ShowPasswordIcon";
 import { HidePasswordIcon } from "../../../../shared/ui/HidePasswordIcon";
-import { useState } from "react";
+import { useState, type FormEvent } from "react";
 import {
   setPasswordField,
   goBackToEmail,
@@ -24,7 +24,7 @@ export function CreatePassword() {
     setType(type == "password" ? "text" : "password");
   };
 
-  const onSubmit = (e) => {
+  const onSubmit = (e:FormEvent) => {
     e.preventDefault();
     if (isValidPassword(password)) {
       dispatch(setPasswordField(password));
@@ -49,7 +49,7 @@ export function CreatePassword() {
               </button>
               <div className="pt-4 pb-4 ">
                 <span className="block text-subdued mb-1 text-[1rem]">
-                  Step 1 of 2
+                  Step 1 of 3
                 </span>
                 <span className="block font-bold text-white text-[1rem]">
                   Create password
@@ -79,7 +79,7 @@ export function CreatePassword() {
                         type={type}
                         id="password"
                         name="password"
-                        className="pl-3 w-full pr-12 pt-3 pb-3 bg-background-base border-1 text-white block border-essential-subdued rounded-sm h-12"
+                        className="pl-3 w-full pr-12 pt-3 pb-3 bg-background-base border text-white block border-essential-subdued rounded-sm h-12"
                       />
                       <div className="flex size-6 absolute right-3 top-1/2 text-subdued -translate-y-1/2">
                         <button

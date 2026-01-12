@@ -20,7 +20,8 @@ interface IAuth {
   name: string;
   isEmailStepDone: boolean;
   isPasswordStepDone: boolean;
-  isAuthStepDone: boolean;
+  isNameStepDone: boolean;
+  isSuccessfullyRegistered: boolean;
 }
 
 export type IEmail = z.infer<typeof Email>;
