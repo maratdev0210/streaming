@@ -7,6 +7,7 @@ import {
   selectLogin,
 } from "../../../../entities/login/model/loginSlice";
 import { login } from "../api/api";
+import { useNavigate } from "react-router";
 
 export function LoginPassword() {
   const dispatch = useDispatch();
@@ -14,6 +15,7 @@ export function LoginPassword() {
   const [type, setType] = useState<"password" | "text">("password");
   const [error, setError] = useState<string>("");
   const { email } = useSelector(selectLogin);
+  const navigate = useNavigate();
 
   const togglePasswordVisibility = () => {
     setType(type == "password" ? "text" : "password");
@@ -25,6 +27,8 @@ export function LoginPassword() {
       const result = await login(email, password);
       setError("");
       dispatch(setLoginState());
+      localStorage.setItem("userId", result.userId);
+      navigate("/");
     } catch {
       setError("Email or password does not match!");
     }

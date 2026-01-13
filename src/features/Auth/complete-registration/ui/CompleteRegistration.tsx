@@ -16,10 +16,13 @@ export function CompleteRegistration() {
 
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    const result = await createUserAccount({ password, email, name });
-    if ("message" in result) {
+    try {
+      const result = await createUserAccount({ password, email, name });
       dispatch(completeRegistration());
+      localStorage.setItem("userId", result.userId);
       navigate("/");
+    } catch {
+      console.log("error");
     }
   };
 

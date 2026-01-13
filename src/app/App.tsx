@@ -1,6 +1,7 @@
 import { BrowserRouter } from "./routes/browser-router";
 import { QueryClient } from "@tanstack/react-query";
 import { QueryClientProvider } from "@tanstack/react-query";
+import { AuthContext } from "./AuthContext";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -11,10 +12,13 @@ const queryClient = new QueryClient({
 });
 
 function App() {
+  const userId = localStorage.getItem("userId");
   return (
     <>
       <QueryClientProvider client={queryClient}>
-        <BrowserRouter />
+        <AuthContext value={userId}>
+          <BrowserRouter />
+        </AuthContext>
       </QueryClientProvider>
     </>
   );

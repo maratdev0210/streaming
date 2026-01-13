@@ -77,6 +77,16 @@ input[type="range" i] {
   scale: 104%;
 }
 
+.icon-base-large {
+  fill: #656565;
+}
+
+.icon-base-large:hover {
+  fill: white;
+  transition-duration: 50ms;
+  scale: 104%;
+}
+
 .icon-base_active {
   fill: #1ed760;
 }
@@ -123,4 +133,8 @@ input[type="range" i] {
   fill: white;
   transition-duration: 50ms;
   scale: 104%;
+}
+
+::-webkit-search-cancel-button {
+  display: none;
 }
