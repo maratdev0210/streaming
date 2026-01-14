@@ -1,6 +1,8 @@
 import { useContext } from "react";
 import { AuthContext } from "../../../app/AuthContext";
 import { GlobalSearch } from "../../../features/Search";
+import { Link } from "react-router";
+import { Profile } from "../../../widgets/Profile/ui/Profile.ui";
 
 export function Navbar() {
   const userId = useContext(AuthContext);
@@ -27,6 +29,21 @@ export function Navbar() {
             <GlobalSearch />
           </div>
         </div>
+        {userId === null && (
+          <div className="flex w-full justify-end items-center">
+            <div className="flex gap-2 items-center">
+              <button className="pt-1 pb-1 pl-2 pr-4 hover:transition hover:duration-50 hover:text-white box-content border-0 cursor-pointer text-center text-[#656565] font-bold text-sm">
+                <Link to="/auth/signup">Sign Up</Link>
+              </button>
+              <button className="font-bold hover:transition hover:duration-150 hover:opacity-90 bg-white rounded-full cursor-pointer box-content h-8 w-27 pt-2 pb-2 pl-8 pr-8">
+                <Link to="/auth/login">
+                  <span className="text-black">Sign In</span>
+                </Link>
+              </button>
+            </div>
+          </div>
+        )}
+        {userId !== null && <Profile />}
       </div>
     </div>
   );

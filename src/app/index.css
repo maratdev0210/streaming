@@ -138,3 +138,23 @@ input[type="range" i] {
 ::-webkit-search-cancel-button {
   display: none;
 }
+
+.profile-picture {
+  background-color: rgb(180, 155, 200);
+  color: black;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.profile-picture-menu {
+  transform: translate3d(-9.4px, 110px, 0px);
+  box-shadow:
+    0 16px 24px rgba(0, 0, 0, 0.3),
+    0 6px 8px rgba(0, 0, 0, 0.2);
+}
+
+.profile-picture-menu-list {
+  box-shadow:
+    0 16px 24px rgba(0, 0, 0, 0.3),
+    0 6px 8px rgba(0, 0, 0, 0.2);
+}
