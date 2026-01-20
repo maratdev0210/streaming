@@ -3,6 +3,7 @@ import trackReducer from "../../entities/track/model/trackSlice";
 import authReducer from "../../entities/auth/model/authSlice";
 import loginReducer from "../../entities/login/model/loginSlice";
 import sidebarReducer from "../../features/Sidebar/ControlSidebar/model/sidebarSlice";
+import mediaViewReducer from "../../features/Sidebar/MediaView/model/mediaViewSlice";
 
 export const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ export const store = configureStore({
     auth: authReducer,
     login: loginReducer,
     sidebar: sidebarReducer,
+    mediaView: mediaViewReducer,
   },
 });
 
