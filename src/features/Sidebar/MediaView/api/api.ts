@@ -9,6 +9,10 @@ type IArtistResponse = {
   artists: IArtist[];
 };
 
+type IFavouriteSongsDataResponse = {
+  songs: number;
+};
+
 async function loadFavouriteAlbums(): Promise<IAlbumResponse> {
   const userId = localStorage.getItem("userId");
 
@@ -29,4 +33,14 @@ async function loadFavouriteArtists(): Promise<IArtistResponse> {
   );
 }
 
-export { loadFavouriteAlbums, loadFavouriteArtists };
+async function loadFavouriteSongsData(): Promise<IFavouriteSongsDataResponse> {
+  const userId = localStorage.getItem("userId");
+
+  return await api<IFavouriteSongsDataResponse, typeof userId>(
+    `/collections/favouriteSongsData?userId=${userId}`,
+    "GET",
+    userId
+  );
+}
+
+export { loadFavouriteAlbums, loadFavouriteArtists, loadFavouriteSongsData };

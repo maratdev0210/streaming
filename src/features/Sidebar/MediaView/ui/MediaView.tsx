@@ -7,7 +7,9 @@ import {
   setFavouriteAlbums,
   setFavouriteArtists,
 } from "../model/mediaViewSlice";
+import { FavouriteSongs } from "./FavouriteSongs";
 import { useEffect, useState } from "react";
+import { is } from "zod/v4/locales";
 
 interface ImediaSidebarProps {
   cover_url: string;
@@ -43,7 +45,9 @@ function MediaSidebarClosed({
             <span className="font-bold text-white text-sm">{artist}</span>
           )}
         </div>
-        <div className={`${mediaType === "Artist" ? "justify-start" : "justify-center"} flex  gap-1 relative bottom-1`}>
+        <div
+          className={`${mediaType === "Artist" ? "justify-start" : "justify-center"} flex  gap-1 relative bottom-1`}
+        >
           <div>
             <span className="text-subdued text-sm">{mediaType}</span>
           </div>
@@ -134,6 +138,7 @@ export function MediaView() {
 
   return (
     <>
+      <FavouriteSongs isSidebarOpen={isSidebarOpen} />
       {favouriteAlbums.map(({ cover_url, artist, title }, index) => {
         return isSidebarOpen ? (
           <MediaSidebarOpen
