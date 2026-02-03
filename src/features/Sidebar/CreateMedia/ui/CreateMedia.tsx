@@ -7,7 +7,7 @@ function AddMediaIcon() {
       data-encore-id="icon"
       role="img"
       aria-hidden="true"
-      fill="#b3b3b3"
+      fill="#fff"
       viewBox="0 0 16 16"
       width="16"
       height="16"

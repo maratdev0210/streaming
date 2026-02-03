@@ -1,9 +1,15 @@
 export interface IAlbum {
-    title: string;
-    artist: string;
-    cover_url: string;
+  title: string;
+  artist: string;
+  cover_url: string;
+}
+
+export interface IArtist {
+  artist: string;
+  cover_url: string;
 }
 
 export interface IMediaView {
-    albums: IAlbum[];
+  albums: IAlbum[];
+  artists: IArtist[];
 }

@@ -1,8 +1,12 @@
 import { api } from "../../../../shared/api/api";
-import type { IAlbum } from "../model/model";
+import type { IAlbum, IArtist } from "../model/model";
 
 type IAlbumResponse = {
   albums: IAlbum[];
+};
+
+type IArtistResponse = {
+  artists: IArtist[];
 };
 
 async function loadFavouriteAlbums(): Promise<IAlbumResponse> {
@@ -15,4 +19,14 @@ async function loadFavouriteAlbums(): Promise<IAlbumResponse> {
   );
 }
 
-export { loadFavouriteAlbums };
+async function loadFavouriteArtists(): Promise<IArtistResponse> {
+  const userId = localStorage.getItem("userId");
+
+  return await api<IArtistResponse, typeof userId>(
+    `/collections/favouriteArtists?userId=${userId}`,
+    "GET",
+    userId
+  );
+}
+
+export { loadFavouriteAlbums, loadFavouriteArtists };
