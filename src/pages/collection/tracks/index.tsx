@@ -7,11 +7,18 @@ import { selectAuth } from "../../../entities/auth/model/authSlice";
 import { useContext } from "react";
 import { AuthContext } from "../../../app/AuthContext";
 import { MediaHeader } from "../../../widgets/MediaHeader/ui/MediaHeader.ui";
+import { selectPlaylist } from "../../../entities/collection/model/collectionSlice";
+import type { RootState } from "../../../app/store/store";
 
 export function CollectionTracks() {
   const { isSuccessfullyRegistered } = useSelector(selectAuth);
   const { isLoggedIn } = useSelector(selectLogin);
   const userId = useContext(AuthContext);
+
+  const favouriteSongs = useSelector((state: RootState) =>
+    selectPlaylist(state, "Favourite Songs")
+  )[0];
+
 
   if (isSuccessfullyRegistered || isLoggedIn) {
     window.location.reload();
@@ -27,7 +34,7 @@ export function CollectionTracks() {
             title="Favourite songs"
             author="Marat"
             coverUrl="https://misc.scdn.co/liked-songs/liked-songs-300.jpg"
-            songs={3}
+            songs={favouriteSongs.songs}
             mediaType="Playlist"
           />
         </div>

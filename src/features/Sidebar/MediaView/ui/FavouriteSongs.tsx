@@ -1,6 +1,12 @@
 import { useState, useEffect } from "react";
-import { loadFavouriteSongsData } from "../api/api";
+import {
+  loadFavouriteSongsData,
+  loadFavouriteSongsById,
+  loadTracksList,
+} from "../api/api";
 import { useNavigate } from "react-router";
+import { useDispatch } from "react-redux";
+import { setPlaylist } from "../../../../entities/collection/model/collectionSlice";
 
 interface IFavouriteSongsProps {
   isSidebarOpen: boolean;
@@ -94,10 +100,21 @@ function FavouriteSongsOpen({ songs }: { songs: number }) {
 
 export function FavouriteSongs({ isSidebarOpen }: IFavouriteSongsProps) {
   const [songs, setSongs] = useState(0);
+  const dispatch = useDispatch();
   useEffect(() => {
     const fetchFavouriteSongsData = async () => {
       try {
         const result = await loadFavouriteSongsData();
+        const favouriteSongsByid = await loadFavouriteSongsById();
+        const tracksList = await loadTracksList(favouriteSongsByid.songIds);
+        dispatch(
+          setPlaylist({
+            title: "Favourite Songs",
+            songs: result.songs,
+            author: "Marat",
+            tracks: tracksList,
+          })
+        );
         setSongs(result.songs);
       } catch (error) {
         console.log(error);

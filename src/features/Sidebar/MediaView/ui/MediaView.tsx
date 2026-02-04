@@ -1,4 +1,9 @@
-import { loadFavouriteAlbums, loadFavouriteArtists } from "../api/api";
+import {
+  loadFavouriteAlbums,
+  loadFavouriteArtists,
+  loadAlbumSongsId,
+  loadTracksList,
+} from "../api/api";
 import { selectSidebar } from "../../ControlSidebar/model/sidebarSlice";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -9,7 +14,10 @@ import {
 } from "../model/mediaViewSlice";
 import { FavouriteSongs } from "./FavouriteSongs";
 import { useEffect, useState } from "react";
-import { is } from "zod/v4/locales";
+import {
+  setAlbum,
+  setArtist,
+} from "../../../../entities/collection/model/collectionSlice";
 
 interface ImediaSidebarProps {
   cover_url: string;
@@ -108,12 +116,25 @@ export function MediaView() {
   const favouriteAlbums = useSelector(selectFavouriteAlbums);
   const favouriteArtists = useSelector(selectFavouriteArtists);
 
-  console.log(favouriteArtists);
-
   useEffect(() => {
     const fetchFavouriteAlbums = async () => {
       try {
         const result = await loadFavouriteAlbums();
+
+        result.albums.map(async (album) => {
+          const albumSongsById = await loadAlbumSongsId(album.id);
+          const tracksList = await loadTracksList(albumSongsById.songIds);
+          dispatch(
+            setAlbum({
+              title: album.title,
+              songs: tracksList.length,
+              artist: album.artist,
+              coverUrl: album.cover_url,
+              tracks: tracksList,
+            })
+          );
+        });
+
         dispatch(setFavouriteAlbums(result.albums));
       } catch (error) {
         console.log(error);
@@ -128,6 +149,14 @@ export function MediaView() {
       try {
         const result = await loadFavouriteArtists();
         dispatch(setFavouriteArtists(result.artists));
+        result.artists.map((artist) => {
+          dispatch(
+            setArtist({
+              artist: artist.artist,
+            })
+          );
+        });
+        
       } catch (error) {
         console.log(error);
       }

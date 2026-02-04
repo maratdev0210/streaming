@@ -2,6 +2,7 @@ export interface IAlbum {
   title: string;
   artist: string;
   cover_url: string;
+  id: number;
 }
 
 export interface IArtist {
