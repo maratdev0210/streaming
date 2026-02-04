@@ -1,6 +1,6 @@
-import { Sidebar } from "./ui/Sidebar";
+import { Sidebar } from "../../widgets/Sidebar/ui/Sidebar.ui";
 import { Track } from "../../widgets/Track/ui/Track.ui";
-import { Navbar } from "./ui/Navbar";
+import { Navbar } from "../../features/Navbar/ui/Navbar";
 import { selectAuth } from "../../entities/auth/model/authSlice";
 import { selectLogin } from "../../entities/login/model/loginSlice";
 import { useSelector } from "react-redux";

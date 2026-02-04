@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { loadFavouriteSongsData } from "../api/api";
+import { useNavigate } from "react-router";
 
 interface IFavouriteSongsProps {
   isSidebarOpen: boolean;
@@ -24,8 +25,10 @@ function PinIcon() {
 
 function FavouriteSongsClosed({ songs }: { songs: number }) {
   const [isMediaHovered, setIsMediaHovered] = useState(false);
+  const navigate = useNavigate();
   return (
     <div
+      onClick={() => navigate("/collection/tracks")}
       onMouseEnter={() => setIsMediaHovered(true)}
       onMouseLeave={() => setIsMediaHovered(false)}
       className={`box-content overflow-visible relative hover:transition hover:duration-75 size-12 p-2 rounded-lg ${isMediaHovered ? " rounded-full bg-subdued/10" : ""}`}
@@ -61,9 +64,11 @@ function FavouriteSongsClosed({ songs }: { songs: number }) {
 
 function FavouriteSongsOpen({ songs }: { songs: number }) {
   const [isMediaHovered, setIsMediaHovered] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <div
+      onClick={() => navigate("/collection/tracks")}
       onMouseEnter={() => setIsMediaHovered(true)}
       onMouseLeave={() => setIsMediaHovered(false)}
       className={`${isMediaHovered ? " rounded-full bg-subdued/20" : ""} box-content flex gap-2 overflow-visible relative cursor-pointer hover:duration-75  p-2 rounded-lg`}

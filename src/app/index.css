@@ -218,3 +218,14 @@ input[type="range" i] {
   width: 64px;
 }
 
+.mainContent {
+  width: calc(100% - 140px);
+}
+
+.mediaHeaderBackground {
+  background: linear-gradient(#0000 0%, #00000080 100%);
+}
+
+.likedImageCover {
+  box-shadow: 0 4px 60px #00000080;
+}
