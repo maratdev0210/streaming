@@ -3,21 +3,21 @@ import {
   loadFavouriteArtists,
   loadAlbumSongsId,
   loadTracksList,
-} from "../api/api";
-import { selectSidebar } from "../../ControlSidebar/model/sidebarSlice";
+} from "../../api/api";
+import { selectSidebar } from "../../../ControlSidebar/model/sidebarSlice";
 import { useSelector, useDispatch } from "react-redux";
 import {
   selectFavouriteAlbums,
   selectFavouriteArtists,
   setFavouriteAlbums,
   setFavouriteArtists,
-} from "../model/mediaViewSlice";
-import { FavouriteSongs } from "./FavouriteSongs";
+} from "../../model/mediaViewSlice";
+import { FavouriteSongs } from "../../favourite-songs/ui/FavouriteSongs";
 import { useEffect, useState } from "react";
 import {
   setAlbum,
   setArtist,
-} from "../../../../entities/collection/model/collectionSlice";
+} from "../../../../../entities/collection/model/collectionSlice";
 
 interface ImediaSidebarProps {
   cover_url: string;
@@ -156,7 +156,6 @@ export function MediaView() {
             })
           );
         });
-        
       } catch (error) {
         console.log(error);
       }

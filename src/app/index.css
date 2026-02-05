@@ -218,8 +218,12 @@ input[type="range" i] {
   width: 64px;
 }
 
-.mainContent {
+.mainContentSidebarClosed {
   width: calc(100% - 140px);
+}
+
+.mainContentSidebarOpen {
+  width: calc(100% - 410px);
 }
 
 .mediaHeaderBackground {

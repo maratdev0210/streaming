@@ -3,10 +3,10 @@ import {
   loadFavouriteSongsData,
   loadFavouriteSongsById,
   loadTracksList,
-} from "../api/api";
+} from "../../api/api";
 import { useNavigate } from "react-router";
 import { useDispatch } from "react-redux";
-import { setPlaylist } from "../../../../entities/collection/model/collectionSlice";
+import { setPlaylist } from "../../../../../entities/collection/model/collectionSlice";
 
 interface IFavouriteSongsProps {
   isSidebarOpen: boolean;
