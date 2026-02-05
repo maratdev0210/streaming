@@ -5,6 +5,7 @@ import loginReducer from "../../entities/login/model/loginSlice";
 import sidebarReducer from "../../features/Sidebar/ControlSidebar/model/sidebarSlice";
 import mediaViewReducer from "../../features/Sidebar/MediaView/model/mediaViewSlice";
 import collectionReducer from "../../entities/collection/model/collectionSlice";
+import mediaControlReducer from "../../features/MediaControl/model/mediaControlSlice";
 
 export const store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ export const store = configureStore({
     sidebar: sidebarReducer,
     mediaView: mediaViewReducer,
     collection: collectionReducer,
+    mediaControl: mediaControlReducer,
   },
 });
 

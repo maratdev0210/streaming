@@ -229,3 +229,34 @@ input[type="range" i] {
 .likedImageCover {
   box-shadow: 0 4px 60px #00000080;
 }
+
+.mediaControlBackground {
+  background: linear-gradient(to bottom, #21183f 0%, #1f1739 50%, #1c162f 100%);
+}
+
+.shuffleIcon:hover {
+  fill: white;
+  transition-duration: 50ms;
+  scale: 134%;
+}
+
+.shuffleIconActive:hover {
+  transition-duration: 50ms;
+  scale: 134%;
+}
+
+.mediaViewIcon:hover {
+  fill: white;
+}
+
+.pickMediaView {
+  position: absolute;
+  transform: translate3d(0px, 45px, 0px);
+  z-index: 9999;
+}
+
+.pickMediaViewShadow {
+  box-shadow:
+    0 16px 24px #0000004d,
+    0 6px 8px #0003;
+}

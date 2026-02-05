@@ -8,6 +8,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../../app/AuthContext";
 import { MediaHeader } from "../../../widgets/MediaHeader/ui/MediaHeader.ui";
 import { selectPlaylist } from "../../../entities/collection/model/collectionSlice";
+import { MediaControl } from "../../../widgets/MediaControl/ui/MediaControl.ui";
 import type { RootState } from "../../../app/store/store";
 
 export function CollectionTracks() {
@@ -18,7 +19,6 @@ export function CollectionTracks() {
   const favouriteSongs = useSelector((state: RootState) =>
     selectPlaylist(state, "Favourite Songs")
   )[0];
-
 
   if (isSuccessfullyRegistered || isLoggedIn) {
     window.location.reload();
@@ -37,6 +37,7 @@ export function CollectionTracks() {
             songs={favouriteSongs.songs}
             mediaType="Playlist"
           />
+          <MediaControl />
         </div>
       </div>
       <Track />
