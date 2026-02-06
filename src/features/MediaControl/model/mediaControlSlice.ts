@@ -6,6 +6,7 @@ import type { RootState } from "../../../app/store/store";
 const initialState: IMediaControl = {
   isShuffled: false,
   mediaViewType: "List",
+  currentlyPlayedTrackId: null,
 };
 
 export const mediaControlSlice = createSlice({
@@ -18,6 +19,9 @@ export const mediaControlSlice = createSlice({
     setMediaViewType: (state, action: PayloadAction<"List" | "Dense">) => {
       state.mediaViewType = action.payload;
     },
+    setCurrentlyPlayedTrackId: (state, action: PayloadAction<number>) => {
+      state.currentlyPlayedTrackId = action.payload;
+    },
   },
 });
 
@@ -26,5 +30,7 @@ export const selectMediaViewType = (state: RootState) =>
   state.mediaControl.mediaViewType;
 export const selectMediaShuffled = (state: RootState) =>
   state.mediaControl.isShuffled;
+export const selectCurrentlyPlayedTrackId = (state: RootState) =>
+  state.mediaControl.currentlyPlayedTrackId;
 
 export default mediaControlSlice.reducer;

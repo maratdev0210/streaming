@@ -10,6 +10,7 @@ import { MediaHeader } from "../../../widgets/MediaHeader/ui/MediaHeader.ui";
 import { selectPlaylist } from "../../../entities/collection/model/collectionSlice";
 import { MediaControl } from "../../../widgets/MediaControl/ui/MediaControl.ui";
 import { selectSidebar } from "../../../features/Sidebar/ControlSidebar/model/sidebarSlice";
+import { MediaList } from "../../../features/MediaControl";
 import type { RootState } from "../../../app/store/store";
 
 export function CollectionTracks() {
@@ -22,6 +23,8 @@ export function CollectionTracks() {
   const favouriteSongs = useSelector((state: RootState) =>
     selectPlaylist(state, "Favourite Songs")
   )[0];
+
+  console.log(favouriteSongs.tracks);
 
   if (isSuccessfullyRegistered || isLoggedIn) {
     window.location.reload();
@@ -43,6 +46,7 @@ export function CollectionTracks() {
             mediaType="Playlist"
           />
           <MediaControl />
+          <MediaList />
         </div>
       </div>
       <Track />

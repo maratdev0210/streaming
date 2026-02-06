@@ -8,6 +8,11 @@
   --color-essential-negative: #ed2c3f;
   --color-essential-subdued: #7c7c7c;
   --color-text-negative: #c91123;
+  --row-height: 56px;
+  --first-min-width: 180px;
+  --var1-min-width: 120px;
+  --var2-min-width: 120px;
+  --last-min-width: 120px;
 }
 
 body {
@@ -263,4 +268,12 @@ input[type="range" i] {
   box-shadow:
     0 16px 24px #0000004d,
     0 6px 8px #0003;
+}
+
+.bg-gradient-start-media {
+  background: linear-gradient(to bottom, #1b152e 0%, #191526 100%);
+}
+
+.bg-graident-first-track {
+  background: linear-gradient (to bottom, #171423 0%, #121212 100%);
 }

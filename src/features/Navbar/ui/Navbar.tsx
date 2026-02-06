@@ -7,7 +7,7 @@ import { Profile } from "../../../widgets/Profile/ui/Profile.ui";
 export function Navbar() {
   const userId = useContext(AuthContext);
   return (
-    <div className="bg-black p-2  flex justify-between items-center h-16 fixed top-0 w-full">
+    <div className="bg-black p-2 z-100 flex justify-between items-center h-16 fixed top-0 w-full">
       <div className="flex justify-start flex-1 gap-0 w-full items-center">
         <div className="min-w-auto pl-20 w-full max-w-136 flex">
           <button className="p-3 size-12 box-border cursor-pointer text-white flex items-center justify-center bg-[#1f1f1f] rounded-[50%]">
