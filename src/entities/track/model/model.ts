@@ -1,7 +1,7 @@
 export interface ITrack {
   title: string;
   artist: string;
-  genre: string[];
+  genre?: string[];
   cover: string;
   duration: number;
   id: number;

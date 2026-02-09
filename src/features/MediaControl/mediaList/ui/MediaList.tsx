@@ -1,7 +1,14 @@
-import { selectMediaViewType } from "../../model/mediaControlSlice";
-import { useSelector } from "react-redux";
+import {
+  selectMediaViewType,
+  selectCurrentlyPlayedTrackId,
+} from "../../model/mediaControlSlice";
+import { useSelector, useDispatch } from "react-redux";
 import type { ITrack } from "../../../../entities/track/model/model";
 import { useState } from "react";
+import type { Playlist } from "../../../../entities/collection/model/model";
+import { streamNewTrack } from "../../../../entities/track/model/trackSlice";
+
+type IMediaList = Pick<Playlist, "tracks">;
 
 function formatTime(time: number): string {
   if (time == 0) {
@@ -54,9 +61,9 @@ function PlayMediaIcon() {
 
 function MediaListRow({ mediaViewType }: { mediaViewType: "List" | "Dense" }) {
   return (
-    <div className="top-16 pl-5 pr-5 bg-gradient-start-media sticky h-9 z-2 mb-3 border-b border-b-[#0000]">
+    <div className="top-16 pl-5 pr-5 bg-gradient-start-media sticky h-9 z-2  border-b border-b-[#0000]">
       <div>
-        <div className="h-9 gap-4 flex items-center justify-start border-b border-b-[#ffffff1a] text-subdued">
+        <div className="h-9 gap-4 flex items-center justify-between border-b border-b-[#ffffff1a] text-subdued">
           <div className="flex items-center justify-self-end">
             <div>#</div>
           </div>
@@ -114,18 +121,37 @@ function MediaItem({
   duration,
   id,
   order,
-  genre,
+  src,
   isTrackSelected,
 }: IMediaItemProps) {
+  const dispatch = useDispatch();
   const [isTrackHovered, setIsTrackHovered] = useState(false);
   const mediaViewType = useSelector(selectMediaViewType);
+
   return (
     <div
+      onClick={() =>
+        dispatch(
+          streamNewTrack({
+            title: title,
+            artist: artist,
+            cover: cover,
+            duration: duration,
+            id: id,
+            listeningTime: 0,
+            volume: 50,
+            isPlaying: true,
+            src: src,
+            isRepeated: false,
+            isShuffled: false,
+          })
+        )
+      }
       onMouseLeave={() => setIsTrackHovered(false)}
       onMouseEnter={() => setIsTrackHovered(true)}
-      className={`${isTrackHovered ? "bg-[#282828]" : ""} ${order === 1 ? "bg-graident-first-track" : "bg-bacgkround-base "} h-14 relative flex gap-4 pl-4 pr-4`}
+      className={`${isTrackHovered ? "bg-[#282828]" : ""} bg-background-base h-14 relative flex justify-between pl-4 pr-4`}
     >
-      <div className="flex justify-self-end items-center">
+      <div className="flex  items-center">
         <div
           className={`${isTrackSelected ? "text-positive" : "text-subdued"} w-4 h-4 relative`}
         >
@@ -139,7 +165,7 @@ function MediaItem({
           )}
         </div>
       </div>
-      <div className="flex items-center">
+      <div className="flex items-center w-56 relative right-12">
         <img
           src={cover}
           className={`${mediaViewType === "Dense" ? "hidden" : ""} mr-3 size-10 rounded-sm`}
@@ -171,22 +197,22 @@ function MediaItem({
           className={`${mediaViewType === "Dense" ? "ml-38" : "ml-22"}  h-2 w-1`}
         ></div>
       </div>
-      <div className="flex items-center">
+      <div className="flex items-center w-18 relative right-14">
         <span
           className={`text-sm ${isTrackHovered ? "text-white" : "text-subdued"}`}
         >
           {mediaViewType === "Dense" ? artist : "Album"}
         </span>
       </div>
-      <div className="flex items-center">
+      <div className="flex items-center relative right-24">
         <div
-          className={`${mediaViewType === "Dense" ? "ml-46" : "ml-52"}  h-2 w-1`}
+          className={`${mediaViewType === "Dense" ? "ml-46" : "ml-48"}  h-2 w-1`}
         ></div>
         <span className="text-subdued text-sm">
           {mediaViewType === "Dense" ? "Album" : "2 days ago"}
         </span>
       </div>
-      <div className="flex items-center">
+      <div className="flex items-center relative right-4">
         <div className="ml-43 h-2 w-1"></div>
         <span className="text-subdued text-sm">{formatTime(duration)}</span>
       </div>
@@ -194,8 +220,9 @@ function MediaItem({
   );
 }
 
-export function MediaList() {
+export function MediaList({ tracks }: IMediaList) {
   const mediaViewType = useSelector(selectMediaViewType);
+  const currentlyPlayedTrackId = useSelector(selectCurrentlyPlayedTrackId);
 
   return (
     <div className="w-full">
@@ -204,16 +231,23 @@ export function MediaList() {
           <MediaListRow mediaViewType={mediaViewType} />
 
           <div>
-            <MediaItem
-              id={3}
-              title="Surfing"
-              artist="Zambolino"
-              cover="http://localhost:3000/media/3/3.webp"
-              duration={61}
-              order={1}
-              src="http://localhost:3000/media/3/3.mp3"
-              isTrackSelected={true}
-            />
+            {tracks.map(
+              ({ id, title, artist, cover, duration, src }, index) => {
+                return (
+                  <MediaItem
+                    key={index}
+                    id={id}
+                    title={title}
+                    artist={artist}
+                    cover={cover}
+                    duration={duration}
+                    order={index + 1}
+                    src={src}
+                    isTrackSelected={currentlyPlayedTrackId === id}
+                  />
+                );
+              }
+            )}
           </div>
         </div>
       </div>

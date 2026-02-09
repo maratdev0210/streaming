@@ -46,7 +46,7 @@ export function CollectionTracks() {
             mediaType="Playlist"
           />
           <MediaControl />
-          <MediaList />
+          <MediaList tracks={favouriteSongs.tracks} />
         </div>
       </div>
       <Track />

@@ -7,7 +7,7 @@ interface ITrack {
   id: number;
 }
 
-interface TrackAdditionalInfo extends ITrack {
+export interface TrackAdditionalInfo extends ITrack {
   isRepeated: boolean;
   isShuffled: boolean;
   isPlaying: boolean;
