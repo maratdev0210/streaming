@@ -35,6 +35,9 @@ Controllers handle HTTP, services implement behavior, repositories query MongoDB
 
 Use one database named *streaming*. Keep media bytes on disk and store references in MongoDB.
 
+- /src/db/models.ts and src/db/schema.ts keep document types, MongoDB validators, requested unique and compound indexes
+- /src/db/database.ts, src/db/setup.ts keep Connection lifecycle, repeatable colleciton/index setup, connect-mongo session store and TTL index
+
 ## Validation and Acceptance
 
 Use Node’s test runner with a dedicated test database and temporary media fixtures.
@@ -48,4 +51,5 @@ Use Node’s test runner with a dedicated test database and temporary media fixt
 - Smoke-test signup/login/logout, library loading, covers, playback, seeking, and track transitions in the browser.
 
 Defaults: one backend instance, local persistent storage, public catalog media, session-protected personal collections, and no upload or library-write APIs. Audio assets must be supplied separately.
+
 
